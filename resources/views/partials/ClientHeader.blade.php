@@ -7,7 +7,8 @@
         <div >
             <a href="{{url('/')}}" class="spc">Home</a>
             <a href="{{ route('guest.product.index') }}" class="spc">Store</a>
-            <a href="" class="spc">Recepies</a>
+            <a href="/recipes" class="spc">Recepies</a>
+
             <a href="" class="spc">About Us</a>
             <a href="" class="spc">Contact Us</a>
             <a href="{{ route('login') }}" class="spc">Log in</a>

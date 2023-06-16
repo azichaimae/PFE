@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\guest\ProductguestController;
 use App\Http\Controllers\client\ProductClientController;
@@ -60,8 +61,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/product/confirm', [ProductClientController::class, 'confirm'])->name('client.product.confirm');
     Route::get('/product/history', [ProductClientController::class, 'history'])->name('client.product.history');
     Route::get('/product/details/{id}', [ProductClientController::class, 'details'])->name('client.product.details');
+    Route::post('recipes/{recipeId}/like', 'App\Http\Controllers\RecipeController@toggleLike')->name('recipes.like');
+    Route::post('/comments', 'App\Http\Controllers\RecipeController@AddComment')->name('comments.store');
+    Route::resource('client/recipes', 'App\Http\Controllers\RecipeController');
 });
 // -------------------------------------------------------------------------------------------------------------------
+
 
 
 
@@ -94,6 +99,11 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
     Route::get('/commandes/history', [ProductController::class, 'commandes'])->name('admin.commandes.history');
     Route::get('/commandes/details/{id}', [ProductController::class, 'details'])->name('admin.commandes.details');
     Route::post('/changestatus/{id}', [ProductController::class, 'changestatus'])->name('admin.changestatus');
+    Route::get('/AdminRecipes', 'App\Http\Controllers\RecipeController@AdminIndex')->name('admin.recipes');
+    Route::get('/AdminRecipes/create', 'App\Http\Controllers\RecipeController@AdminCreate')->name('admin.recipes.create');
+    Route::post('/AdminRecipes/store', 'App\Http\Controllers\RecipeController@AdminStore')->name('admin.recipes.store');
+    Route::get('/AdminRecipes/{id}/edit', 'App\Http\Controllers\RecipeController@AdminEdit')->name('admin.recipes.edit');
+    Route::put('/AdminRecipes/{id}/edit', 'App\Http\Controllers\RecipeController@AdminUpdate')->name('admin.recipes.update');
 
     //user root---------------------------------------------------------------------------
     Route::get('/users/home', [UserController::class, 'index'])->name('admin.users.index');
