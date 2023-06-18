@@ -61,17 +61,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/product/confirm', [ProductClientController::class, 'confirm'])->name('client.product.confirm');
     Route::get('/product/history', [ProductClientController::class, 'history'])->name('client.product.history');
     Route::get('/product/details/{id}', [ProductClientController::class, 'details'])->name('client.product.details');
-    Route::post('recipes/{recipeId}/like', 'App\Http\Controllers\RecipeController@toggleLike')->name('recipes.like');
-    Route::post('/comments', 'App\Http\Controllers\RecipeController@AddComment')->name('comments.store');
-    Route::resource('client/recipes', 'App\Http\Controllers\RecipeController');
+
+    // Recepies ----------------------------------------------------------------------------------
+    Route::get('recipe/{recipeId}/like', [RecipeController::class, 'toggleLike'])->name('client.recipes.like');
+    Route::get('/recipe', [RecipeController::class, 'index'])->name('client.recipes.index');
+    Route::get('/recipe/create', [RecipeController::class, 'create'])->name('client.recipes.create');
+    Route::post('/recipe/store', [RecipeController::class, 'store'])->name('client.recipes.store');
+    Route::get('/recipe/{recipeId}', [RecipeController::class, 'show'])->name('client.recipes.show');
+    Route::get('/recipe/{recipeId}/edit', [RecipeController::class, 'edit'])->name('client.recipes.edit');
+    Route::put('/recipe/{recipeId}', [RecipeController::class, 'update'])->name('client.recipes.update');
+    Route::delete('/recipe/{recipeId}', [RecipeController::class, 'destroy'])->name('client.recipes.destroy');
+    Route::post('/comments/add', [RecipeController::class, 'addComment'])->name('client.recipes.addComment');
+
 });
 // -------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
 
 //Admin Routes -------------------------------------------------------------------------------------------------------------------------
 
@@ -99,11 +102,14 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
     Route::get('/commandes/history', [ProductController::class, 'commandes'])->name('admin.commandes.history');
     Route::get('/commandes/details/{id}', [ProductController::class, 'details'])->name('admin.commandes.details');
     Route::post('/changestatus/{id}', [ProductController::class, 'changestatus'])->name('admin.changestatus');
-    Route::get('/AdminRecipes', 'App\Http\Controllers\RecipeController@AdminIndex')->name('admin.recipes');
-    Route::get('/AdminRecipes/create', 'App\Http\Controllers\RecipeController@AdminCreate')->name('admin.recipes.create');
-    Route::post('/AdminRecipes/store', 'App\Http\Controllers\RecipeController@AdminStore')->name('admin.recipes.store');
-    Route::get('/AdminRecipes/{id}/edit', 'App\Http\Controllers\RecipeController@AdminEdit')->name('admin.recipes.edit');
-    Route::put('/AdminRecipes/{id}/edit', 'App\Http\Controllers\RecipeController@AdminUpdate')->name('admin.recipes.update');
+
+    // Admin Recepes--------------------------------------------------------------------------
+        Route::get('/admin/recipe', [RecipeController::class, 'adminIndex'])->name('admin.recipes.index');
+        Route::get('/admin/recipe/create', [RecipeController::class, 'adminCreate'])->name('admin.recipes.create');
+        Route::post('/admin/recipe', [RecipeController::class, 'adminStore'])->name('admin.recipes.store');
+        Route::get('/admin/recipe/{id}/edit', [RecipeController::class, 'adminEdit'])->name('admin.recipes.edit');
+        Route::put('/admin/recipe/{id}', [RecipeController::class, 'adminUpdate'])->name('admin.recipes.update');
+    // ------------------------------------------------------------------------------------------------------------
 
     //user root---------------------------------------------------------------------------
     Route::get('/users/home', [UserController::class, 'index'])->name('admin.users.index');
