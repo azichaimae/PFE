@@ -51,11 +51,7 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-body {
-  color: var(--color-default);
-  background-color: var(--color-background);
-  font-family: var(--font-default);
-}
+
 
 a {
   color: var(--color-primary);

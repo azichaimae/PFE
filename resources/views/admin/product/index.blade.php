@@ -30,35 +30,26 @@
             {{ $message }}
         </div>
     @endif
-    <div class="mt-6 flex flex-wrap justify-around gap-4"  style="font-family: 'Montserrat', sans-serif; font-weight:bold">
-        @foreach ($dd as $d)
+    <div class="mt-6 flex flex-wrap justify-around gap-4" style="font-family: 'Montserrat', sans-serif; font-weight:bold">
+        @foreach ($recipes as $recipe)
             <div class="max-w-sm rounded overflow-hidden shadow-lg w-96">
-                <div style="background-image: url('{{asset('products/'.$d->image)}}');"
-                    class="bg-hero bg-no-repeat bg-cover bg-center  w-full h-64">
+                <div style="background-image: url('{{ asset('assets/recipes/' . $recipe->image) }}');"
+                    class="bg-hero bg-no-repeat bg-cover bg-center w-full h-64">
                 </div>
-                {{-- <img src="{{asset('products/'.$d->image)}}" alt="{{ $d->name }}"> --}}
                 <div class="px-5 pb-5">
                     <h5 class="py-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                        {{ $d->name }}
+                        {{ $recipe->title }}
                     </h5>
-                    <span
-                        class=" inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ $d->category }}</span>
+                    <p class="text-gray-700">{{ $recipe->description }}</p>
                     <div class="my-5 flex items-center justify-between">
-                        <span class="text-3xl font-bold text-gray-900 dark:text-white">${{ $d->price }}</span>
                         <div>
-                            <a href="{{ route('admin.products.edit', $d->id) }}"
-                                class="focus:outline-none text-white bg-success-600 hover:bg-success-800 focus:ring-4 focus:ring-success-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-success-900">Edit</a>
-
-                            <a href="{{ route('admin.products.delete', $d->id) }}"
-                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</a>
+                            <a href="{{ route('admin.recipes.edit', $recipe->id) }}" class="focus:outline-none text-white bg-success-600 hover:bg-success-800 focus:ring-4 focus:ring-success-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-success-900">Edit</a>
+                            <a href="{{ route('admin.recipes.delete', $recipe->id) }}" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</a>
                         </div>
-
                     </div>
                 </div>
             </div>
         @endforeach
-
-    </div>
-
     </div>
 @endsection
+

@@ -49,7 +49,7 @@ Route::middleware([])->group(function () {
 //Client-------------------------------------------------------------------------------------------------
 Route::get('/client/home', function () {
     return view('client.home');
-});
+})->name('client.index');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/product/index', [ProductClientController::class, 'index'])->name('client.product.index');
     Route::get('/product/show/{id}', [ProductClientController::class, 'show'])->name('client.product.show');
@@ -63,7 +63,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/product/details/{id}', [ProductClientController::class, 'details'])->name('client.product.details');
 
     // Recepies ----------------------------------------------------------------------------------
-    Route::get('recipe/{recipeId}/like', [RecipeController::class, 'toggleLike'])->name('client.recipes.like');
+    Route::post('recipe/{recipeId}/like', [RecipeController::class, 'toggleLike'])->name('client.recipes.like');
     Route::get('/recipe', [RecipeController::class, 'index'])->name('client.recipes.index');
     Route::get('/recipe/create', [RecipeController::class, 'create'])->name('client.recipes.create');
     Route::post('/recipe/store', [RecipeController::class, 'store'])->name('client.recipes.store');

@@ -135,7 +135,7 @@ class RecipeController extends Controller
         $recipe->user_id = auth()->user()->id;
         $recipe->save();
 
-        return redirect('/client/recipes')->with('success', 'Recipe created successfully.');
+        return redirect('/recipe')->with('success', 'Recipe created successfully.');
     }
     public function show(string $id)
     {
