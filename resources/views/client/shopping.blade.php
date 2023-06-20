@@ -1,8 +1,10 @@
 @extends('layouts.dashboard.client.dashboard')
+<br>
+<br>
+<br>
 @section('content')
-    <h3 class="mb-2 mt-0 text-3xl font-medium leading-tight text-dark" style="font-family: 'Montserrat', sans-serif; font-weight:bold;">
+    <h3 class="mb-2 mt-0 text-3xl font-medium leading-tight text-dark">
         Shopping page
-        {{-- "{{$search}}" --}}
     </h3>
     <br>
     <div class="bg-white shadow-lg rounded-lg overflow-hidden" style="font-family: 'Montserrat', sans-serif; ">
@@ -62,7 +64,7 @@
     <br>
     <br>
     <div>
-        <button class="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-600" style="font-family: 'Montserrat', sans-serif; "><a href="{{route('client.product.history')}}">History</a></button>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-600"><a href="{{route('client.product.history')}}" style="color:white; ">History</a></button>
     </div>
 @endsection
 
