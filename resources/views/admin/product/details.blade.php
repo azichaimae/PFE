@@ -1,5 +1,6 @@
 @extends('layouts.dashboard.admin.dashboard')
 @section('content')
+
     <div class="max-w-3xl mx-auto bg-white p-8 shadow-md">
         <div class="flex items-center justify-between px-4 py-2 bg-gray-100 mb-4">
             <h1 class="text-xl font-semibold">Cart Details</h1>

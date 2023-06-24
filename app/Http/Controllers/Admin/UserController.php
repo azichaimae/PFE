@@ -35,27 +35,39 @@ class UserController extends Controller
         }
 
     }
+    public function destroy(string $id)
+    {
+        $user= User::findOrFail($id);
+        $user->delete();
 
+        return back()->with('success', 'User deleted successfully.');
+    }
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $user = Auth::user();
-        if ($user->is_admin) {
-            $request->validate([
-                'is_admin' => 'required'
-            ]);
+{
+    $user = Auth::user();
+    if ($user->is_admin) {
+        $request->validate([
+            'is_admin' => 'required',
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
 
-            User::where('id', $id)->update([
-                'is_admin' => ($request->is_admin == "true" ? 1 : 0),
-            ]);
-            return redirect()->route("admin.users.index")->with('success', 'user has been edited successfully.');
+        $userData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'is_admin' => ($request->is_admin == "true" ? 1 : 0),
+        ];
 
-        } else {
-            return redirect()->route("client.product.index");
-        }
+        User::where('id', $id)->update($userData);
 
+        return redirect()->route("admin.users.index")->with('success', 'User has been updated successfully.');
+    } else {
+        return redirect()->route("client.product.index");
     }
+}
+
 
 }

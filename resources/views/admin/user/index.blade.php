@@ -44,6 +44,12 @@
                                 class="focus:outline-none text-white bg-success-600 hover:bg-success-500 focus:ring-4 focus:ring-success-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-success-900">
                                 Edit user
                             </a>
+                            <br><br><br>
+                            <form action="{{ route('admin.users.delete', $d->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                    <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Delete User</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

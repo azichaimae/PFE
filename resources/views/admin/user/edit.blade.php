@@ -6,17 +6,18 @@
     <br>
     <form class="my-6" action="{{ route('admin.users.update', $data->id) }}" method="Post" enctype="multipart/form-data" style="font-family: 'Montserrat', sans-serif;">
         @csrf
+        @method('PUT')
         <div class="mb-6">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User's Name</label>
-            <input type="text" name="email" value="{{ $data->name }}"
+            <input type="text" name="name" value="{{ $data->name }}"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Name . . . " disabled>
+                placeholder="Name . . . " >
         </div>
         <div class="mb-6">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User's Email</label>
-            <input type="text" name="name" value="{{ $data->email }}"
+            <input type="text" name="email" value="{{ $data->email }}"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Emali . . . " disabled>
+                placeholder="Email . . . " >
         </div>
         <div class="mb-6">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

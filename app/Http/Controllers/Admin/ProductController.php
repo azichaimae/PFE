@@ -105,7 +105,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $user = Auth::user();
+
         $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -113,6 +115,7 @@ class ProductController extends Controller
             'quantity' => 'required|integer|min:0',
             'category' => 'required|integer|min:1'
         ]);
+
 
         $product = Product::findOrFail($id); // Retrieve the product or throw a 404 error if not found
 

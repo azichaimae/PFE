@@ -1,5 +1,6 @@
 @extends('layouts.dashboard.client.dashboard')
 @section('content')
+<br><br><br><br><br>
     <h3 class="mb-2 mt-0 text-3xl font-medium leading-tight text-dark" style="font-family: 'Montserrat', sans-serif; font-weight:bold">
         Products that are between {{$min}}$ and {{$max}}$ :
     </h3>

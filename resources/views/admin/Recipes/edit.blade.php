@@ -8,24 +8,24 @@
         @method('PUT')
         <div class="mb-6">
             <label for="name" class="block mb-2 text-sm font-medium text-blue-700">Recipes's Name</label>
-            <input type="text" name="name" value="{{ old('name') }}"
+            <input type="text" name="name" value="{{ $recipe->name }}"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Name">
         </div>
         <div class="mb-6">
             <label for="name" class="block mb-2 text-sm font-medium text-blue-700">Recipes's Description</label>
-            <input type="textarea" name="description" value="{{ old('description') }}"
+            <input type="textarea" name="description" value="{{ $recipe->description }}"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Description">
         </div>
         <div class="mb-6">
             <label for="name" class="block mb-2 text-sm font-medium text-blue-700">Recipe's Image</label>
-            <input type="file" name="picture"
+            <input type="file" name="picture"  value="{{ $recipe->picture}}"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
         </div>
         <button type="submit"
             class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Add Recipe
+                Update Recipe
         </button>
     </form>
 @endsection

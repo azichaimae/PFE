@@ -64,10 +64,85 @@
 .button-88:active {
   box-shadow: 0 0.3em 1em -0.5em #14a73e98;
 }
+.card1 {
+    position: fixed;
+    width: 350px;
+    background-color: #efefef;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.image img {
+    transition: all 0.5s
+}
+
+.card1:hover .image img {
+    transform: scale(1.5)
+}
+
+
+
+.name {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.idd {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.idd1 {
+    font-size: 12px
+}
+
+.number {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.follow {
+    font-size: 12px;
+    font-weight: 500;
+    color: #444444
+}
+
+.btn1 {
+    height: 40px;
+    width: 150px;
+    border: none;
+    background-color: #000;
+    color: #aeaeae;
+    font-size: 15px
+}
 .card{
-    background-image: url(https://image.freepik.com/vecteurs-libre/fast-food-drole-mignon-modele-sans-couture_71374-1259.jpg);
-    font-size: 20px;
-    font-weight: bold;
+    position: relative;
+    left: 80%;
+    width:450px;
+}
+.text span {
+    font-size: 13px;
+    color: #545454;
+    font-weight: 500
+}
+
+.icons i {
+    font-size: 19px
+}
+
+hr .new1 {
+    border: 1px solid
+}
+
+.join {
+    font-size: 14px;
+    color: #a0a0a0;
+    font-weight: bold
+}
+
+.date {
+    background-color: #ccc
 }
     </style>
 </head>
@@ -85,15 +160,14 @@
           <nav id="navmenu" class="navmenu">
             <ul>
               <li><a href="{{route('client.index')}}" class="active">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
+              <li><a href="{{route('client.index')}}#about">About</a></li>
+              <li><a href="{{route('client.index')}}#services">Services</a></li>
               <li><a href="{{ route('client.recipes.create')}}">Add Recepie</a></li>
-              <li><a href="{{ route('guest.product.index') }}">Store</a></li>
-              <li><a href="#contact">Contact Us</a></li>
+              <li><a href="{{ route('client.product.index') }}">Store</a></li>
+              <li><a href="{{route('client.index')}}#contact">Contact Us</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
           </nav><!-- End Nav Menu -->
-
           <div class="dropdown has-dropdown">
             <a href="#" class="btn-getstarted dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ Auth::user()->name }}
@@ -113,12 +187,27 @@
         </div>
       </header>
 
-       <br><br><br><br><br><br><br><br>
+       <br><br><br><br>
+       <div class="container mt-4 mb-4 p-3 d-flex ">
+        <div class="card1 p-4">
+            <div class=" image d-flex flex-column justify-content-center align-items-center">
+                <button class="btn btn-secondary">
+                     <img src="https://picsum.photos/500/300" height="100" width="100" /></button>
+                      <span class="name mt-3">{{auth()->user()->name}}</span>
+                      <span class="idd">@ {{auth()->user()->id}}{{auth()->user()->name}}</span>
+                       <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                        <span class="idd1">{{auth()->user()->email}}</span> <span><i class="fa fa-copy"></i></span> </div>
+                        <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">1069 <span class="follow">Followers</span></span> </div>
+                        <div class=" d-flex mt-2"> <a  href="{{ route('profile.edit') }}">Edit Profile</a> </div>
+                          <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"> <span><i class="fa fa-twitter"></i></span> <span><i class="fa fa-facebook-f"></i></span> <span><i class="fa fa-instagram"></i></span> <span><i class="fa fa-linkedin"></i></span> </div>
+                          <div class=" px-2 rounded mt-4 date "> Joined {{auth()->user()->created_at}}<span class="join"></span> </div> </div> </div>
+                            </div>
+
        <div class="mt-6">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="row row-cols-1 row-cols-md-2 g-4 d-flex flex-column justify-content-center ">
             @foreach ($recipes as $recipe)
             <div class="col">
-                <div class="card h-100">
+                <div class="card h-100 ">
                     <div class="d-flex justify-content-between p-2 px-3">
                         <div class="d-flex flex-row align-items-center">
                             <img src="https://picsum.photos/500/300"  width="40" class="rounded-image">
@@ -183,7 +272,7 @@
                                     @csrf
                                     <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
                                     <input type="text" class="form-control" name="comment" placeholder="Write a comment..." required >
-                                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                                    <button type="submit" class=" btn btn-primary mt-2">Submit</button>
                                 </form>
                             </div>
                         </div>

@@ -81,7 +81,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified','admin'])->group(function () {
     Route::get('/dashboard', [CategoryController::class, 'index'])->name('dashboard');
 
-    Route::get('sendmail', [MailController::class, 'index'])->name('sendmail');
+    Route::get('sendmail/{email}', [MailController::class, 'index'])->name('sendmail');
     // category routes----------------------------------------------------------------------------------
     Route::get('/categories/home', [CategoryController::class, 'index'])->name('admin.categories.index');
     Route::post('/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store');
@@ -114,7 +114,8 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
     //user root---------------------------------------------------------------------------
     Route::get('/users/home', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
-    Route::post('/users/update/{id}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::put('/users/update/{id}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/users/destroy/{id}', [UserController::class, 'destroy'])->name('admin.users.delete');
 
 
 });

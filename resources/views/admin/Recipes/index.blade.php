@@ -39,9 +39,12 @@
                         <td class="px-6 py-4 text-center">
                             <a href="{{ route('admin.recipes.edit', $recipe->id) }}"
                                 class="focus:outline-none text-white bg-success-600 hover:bg-success-400 focus:ring-4 focus:ring-success-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Edit</a>
-
-                            <a href="{{ route('client.recipes.destroy', $recipe->id) }}"
-                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Delete</a>
+                            <br><br><br>
+                        <form action="{{ route('client.recipes.destroy', $recipe->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                                <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Delete</button>
+                        </form>
                         </td>
                     </tr>
                 @endforeach

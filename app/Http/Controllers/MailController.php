@@ -13,14 +13,14 @@ class MailController extends Controller
      *
      * @return response()
      */
-    public function index()
+    public function index($email)
     {
         $mailData = [
-            'title' => 'Mail from Noon Store',
+            'title' => 'Mail from Wasted to wanted',
             'body' => 'thank you for trusting us! you command status is: in shipping!'
         ];
 
-        Mail::to('shaimae.azelmat19@gmail.com')->send(new DemoMail($mailData));
+        Mail::to($email)->send(new DemoMail($mailData));
         return redirect()->route('admin.commandes.history');
     }
 }

@@ -30,26 +30,51 @@
             {{ $message }}
         </div>
     @endif
-    <div class="mt-6 flex flex-wrap justify-around gap-4" style="font-family: 'Montserrat', sans-serif; font-weight:bold">
-        @foreach ($recipes as $recipe)
-            <div class="max-w-sm rounded overflow-hidden shadow-lg w-96">
-                <div style="background-image: url('{{ asset('assets/recipes/' . $recipe->image) }}');"
-                    class="bg-hero bg-no-repeat bg-cover bg-center w-full h-64">
-                </div>
-                <div class="px-5 pb-5">
-                    <h5 class="py-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                        {{ $recipe->title }}
-                    </h5>
-                    <p class="text-gray-700">{{ $recipe->description }}</p>
-                    <div class="my-5 flex items-center justify-between">
-                        <div>
-                            <a href="{{ route('admin.recipes.edit', $recipe->id) }}" class="focus:outline-none text-white bg-success-600 hover:bg-success-800 focus:ring-4 focus:ring-success-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-success-900">Edit</a>
-                            <a href="{{ route('admin.recipes.delete', $recipe->id) }}" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
+    <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr style="font-family: 'Montserrat', sans-serif; font-weight:bold">
+                    <th scope="col" class="px-6 py-3">Image</th>
+                    <th scope="col" class="px-6 py-3">name</th>
+                    <th scope="col" class="px-6 py-3">Description</th>
+                    <th scope="col" class="px-6 py-3">Price</th>
+                    <th scope="col" class="px-6 py-3">quantity</th>
+                    <th scope="col" class="px-6 py-3">Category</th>
+                    <th scope="col" class="px-6 py-3 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($dd as $d)
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" style="font-family: 'Montserrat', sans-serif;">
+                        <td class="px-6 py-4">
+                            <img src="{{ asset('products/'.$d->image) }}" alt="{{ $d->name }}" class="w-20 h-20 rounded-lg">
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 ">
+                            {{ $d->name }}
+                        </td>
+                        <td class="px-6 py-4 text-gray-1200">
+                            {{ $d->description }}
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ $d->price }}
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ $d->quantity }}
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 ">
+                            {{ $d->category}}
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            <a href="{{ route('admin.products.edit', $d->id) }}"
+                                class="focus:outline-none text-white bg-success-600 hover:bg-success-400 focus:ring-4 focus:ring-success-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Edit</a>
+                                <br>
+                                <br>
+                            <a href="{{ route('admin.products.delete', $d->id) }}"
+                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Delete</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-@endsection
-
+    @endsection

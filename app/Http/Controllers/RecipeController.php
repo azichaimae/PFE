@@ -48,7 +48,7 @@ class RecipeController extends Controller
         $recipe->user_id = auth()->user()->id;
         $recipe->save();
 
-        return redirect('/AdminRecipes')->with('success', 'Recipe created successfully.');
+        return redirect('/admin/recipe')->with('success', 'Recipe created successfully.');
     }
     public function AdminEdit(string $id)
     {
@@ -92,7 +92,7 @@ class RecipeController extends Controller
 
         $recipe->save();
 
-        return redirect('/AdminRecipes')->with('success', 'Recipe updated successfully.');
+        return redirect('/admin/recipe')->with('success', 'Recipe updated successfully.');
 
     }
     // End Admin --------------------------------------------------------------------------------------------
@@ -139,8 +139,8 @@ class RecipeController extends Controller
     }
     public function show(string $id)
     {
-        $recipe = Recipe::findOrFail($id);
-        return view('recipes.show', compact('recipe'));
+        $recipe = recipes::findOrFail($id);
+        return back()->with('success', 'Recipe deleted successfully.');
     }
     public function edit(string $id)
     {
